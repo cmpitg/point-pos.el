@@ -66,17 +66,17 @@ position instead of raising an error."
   "Set current point position to POS."
   (setq point-pos-current pos))
 
-(defun point-pos-make (&optional point buffer)
+(defun point-pos-make (&optional marker buffer)
   "Return point position made from POINT and BUFFER.
 If POINT is nil, use current point.  If BUFFER is nil, use
 current buffer."
   (list (or buffer (current-buffer))
-        (or point (point))))
+        (or marker (point-marker))))
 
 (defun point-pos-get-point (&optional pos)
   "Return point from the point position POS.
 If POS is nil, use current point position."
-  (cadr (or pos (point-pos-get-current))))
+  (marker-position (cadr (or pos (point-pos-get-current)))))
 
 (defun point-pos-get-buffer (&optional pos)
   "Return buffer from the point position POS.
